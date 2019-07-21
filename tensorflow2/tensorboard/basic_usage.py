@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from tensorflow import keras
 
@@ -24,7 +25,7 @@ if __name__ == '__main__':
     num_epochs = 30
     learning_rate = 0.01
     batch_size = 32
-    logdir = "logs\\basic"
+    logdir = os.path.join(".", "logs", "basic")
 
     X_train, y_train = make_toy_dataset(N_train)
     X_test, y_test = make_toy_dataset(N_test)
@@ -34,7 +35,7 @@ if __name__ == '__main__':
         keras.optimizers.SGD(learning_rate),
         loss="mse",
         metrics=["mse", "mae"]
-        )
+    )
 
     tb_callback = keras.callbacks.TensorBoard(logdir)
 
